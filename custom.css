@@ -1,0 +1,182 @@
+/** GLOBAL **/
+a:not(.btn) {
+  position: relative;
+  opacity: 1;
+}
+a:not(.btn):hover {
+  opacity: 0.56 !important;
+  transition: all 0.25s !important;
+}
+
+/** Banner **/
+.banner {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  padding: 0 26px;
+  top: -47px;
+  width: 100%;
+  height: 47px;
+  color: white;
+  background: hsl(40, 10%, 20%);
+  z-index: 99999;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+.banner.show {
+  opacity: 1;
+  top: 0px;
+}
+.contact {
+  font-size: 12px;
+}
+.social {
+  margin-left: auto;
+  padding-right: 5%;
+}
+.social .sqs-svg-icon--wrapper {
+  width: 30px;
+  height: 30px;
+}
+.social .sqs-use--icon {
+  fill: white;
+}
+
+.banner .contact a {
+  text-decoration: underline;
+}
+.banner [class^="icon-"]:before{
+  color: #c00;
+}
+
+/** End Banner **/
+
+/** Slideshow **/
+.slides--initialized {
+  min-height: 77vh !important;
+}
+
+/** End Slideshow **/
+
+/** Nav Links **/
+.header-nav-item a {
+  position: relative;
+}
+.header-nav-item:not(.header-nav-item--folder) a:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: '.';
+  color: transparent;
+  background: #aaa;
+  height: 1px;
+  transition: all 0.25s;
+}
+.header-nav-item:not(.header-nav-item--folder) a:hover:after {
+  width: 100%;
+}
+/** End Nav Links **/
+
+/** Dropdown **/
+.header-nav-folder-content {
+  position: relative;
+  left: 0 !important;
+  top: 91% !important;
+  border-top: 2px solid #c00;
+  padding: 0 !important;
+  background-color: white !important;
+}
+
+.header-nav-folder-item {
+  background: white;
+  padding: 8px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.header-nav-folder-item:hover {
+  background: hsl(0, 0, 90%);
+}
+
+.header-nav-folder-item a {
+   color: black !important;
+}
+
+/** End Dropdown **/
+/** FONTS **/
+
+@font-face {
+  font-family: 'fontello';
+  src: url('https://static1.squarespace.com/static/61301047fa54f4129939ecbe/t/618a28de95ca4261584df74c/1636444382077/fontello.eot') format('embedded-opentype'),
+    url('https://static1.squarespace.com/static/61301047fa54f4129939ecbe/t/618a290c8b828e308384205a/1636444428309/fontello.ttf') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-tag:before { content: '\e800'; } /* '' */
+.icon-tags:before { content: '\e801'; } /* '' */
+.icon-flag:before { content: '\e802'; } /* '' */
+.icon-users:before { content: '\e803'; } /* '' */
+.icon-help-circled:before { content: '\e804'; } /* '' */
+.icon-comment:before { content: '\e805'; } /* '' */
+.icon-book:before { content: '\e806'; } /* '' */
+.icon-search:before { content: '\e807'; } /* '' */
+.icon-truck:before { content: '\e808'; } /* '' */
+.icon-mail:before { content: '\e809'; } /* '' */
+.icon-ok:before { content: '\e80a'; } /* '' */
+.icon-thumbs-up:before { content: '\e80b'; } /* '' */
+.icon-thumbs-down:before { content: '\e80c'; } /* '' */
+.icon-phone:before { content: '\e80d'; } /* '' */
+.icon-rss:before { content: '\f09e'; } /* '' */
+.icon-beaker:before { content: '\f0c3'; } /* '' */
+.icon-docs:before { content: '\f0c5'; } /* '' */
+.icon-mail-alt:before { content: '\f0e0'; } /* '' */
+.icon-comment-empty:before { content: '\f0e5'; } /* '' */
+.icon-doc-text:before { content: '\f0f6'; } /* '' */
+.icon-flag-checkered:before { content: '\f11e'; } /* '' */
+.icon-help:before { content: '\f128'; } /* '' */
+.icon-rss-squared:before { content: '\f143'; } /* '' */
+.icon-doc-text-inv:before { content: '\f15c'; } /* '' */
+.icon-down:before { content: '\f175'; } /* '' */
+.icon-up:before { content: '\f176'; } /* '' */
+.icon-left:before { content: '\f177'; } /* '' */
+.icon-right:before { content: '\f178'; } /* '' */
+.icon-cube:before { content: '\f1b2'; } /* '' */
+.icon-cubes:before { content: '\f1b3'; } /* '' */
