@@ -1,3 +1,7 @@
+function detectMob() {
+  return window.innerWidth <= 800 && window.innerHeight <= 600;
+}
+
 var node = document.createElement("div");
 node.className = "banner";
 
@@ -58,19 +62,15 @@ social.innerHTML = `
 </a>
 `;
 
-node.prepend(contact);
-node.appendChild(social);
-document.body.prepend(node);
-document.addEventListener("scroll", () => {
-  if (window.scrollY !== 0) {
-    node.className = "banner show";
-  } else {
-    node.className = "banner";
-  }
-});
-
-/*
-function detectMob() {
-    return ( ( window.innerWidth <= 800 ) && ( window.innerHeight <= 600 ) );
+if (!detectMob()) {
+  node.prepend(contact);
+  node.appendChild(social);
+  document.body.prepend(node);
+  document.addEventListener("scroll", () => {
+    if (window.scrollY !== 0) {
+      node.className = "banner show";
+    } else {
+      node.className = "banner";
+    }
+  });
 }
-*/
