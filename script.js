@@ -2,18 +2,31 @@ var node = document.createElement("div");
 node.className = "banner";
 
 var phone1 = document.createElement("a");
-phone1.href = "tel:5807625451";
+phone1.href = "tel:580-762-5451";
 phone1.innerHTML = "+1 (580) 762-5451";
+
+var phone2 = document.createElement("a");
+phone2.href = "tel:1-800-696-2865";
+phone2.innerHTML = "Toll-free: +1(800) 696-2865";
 
 var phoneIcon = document.createElement("span");
 phoneIcon.className = "icon-phone";
 
+var email = document.createElement("a");
+email.href = "mailto:info@centerline-inc.com";
+email.innerHTML = "info@centerline-inc.com";
+
+var mailIcon = document.createElement("span");
+mailIcon.className = "icon-mail-alt";
+
 var contact = document.createElement("div");
+contact.prepend(email);
+contact.prepend(mailIcon);
 contact.className = "contact";
-contact.prepend(phone1);
+contact.prepend(phone2);
 contact.prepend(phoneIcon);
 contact.prepend(phone1);
-contact.prepend(phoneIcon);
+contact.prepend(phoneIcon.cloneNode());
 
 var social = document.createElement("div");
 social.className = "social";
