@@ -21,13 +21,13 @@
             autocomplete="email" spellcheck="false" aria-required="true">
         </div>
 
-        <fieldset class="form-item fields phone">
-          <legend class="title">
+        <fieldset class="form-item fields">
+          <label class="title" for="phone">
             Phone
-          </legend>
-          <div class="field text three-digits">
+          </label>
+          <div class="field text">
             <label class="caption">
-              <input class="field-element" type="text" type="phone">
+              <input id="phone" class="field-element phone" type="tel" type="phone">
               <!-- <span class="caption-text">(###)</span> -->
             </label>
           </div>
@@ -87,7 +87,31 @@
       </div>
       <div class="hidden form-submission-html" data-submission-html=""></div>
     </form>
-      <script>
+    <script>
+        var telInput = document.querySelector("#phone");
+        var iti = window.intlTelInput(telInput, {
+          // any initialisation options go here
+          utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.16/js/utils.min.js",
+          preferredCountries: ['US'],
+          nationalMode: false,
+          formatOnDisplay: true // SET THIS!!!
+        });
+
+        telInput.addEventListener('keyup', formatIntlTelInput);
+        telInput.addEventListener('change', formatIntlTelInput);
+
+        function formatIntlTelInput() {
+          if (typeof intlTelInputUtils !== 'undefined') { // utils are lazy loaded, so must check
+            var currentText = iti.getNumber(intlTelInputUtils.numberFormat.E164);
+            if (typeof currentText === 'string') { // sometimes the currentText is an object :)
+              iti.setNumber(currentText); // will autoformat because of formatOnDisplay=true
+            }
+          }
+        }
+
+        /** File Upload **/
+
+        /** Submit to AWS **/
         (() => {
           const form = document.querySelector('#centerline-form');
           const submitResponse = document.querySelector('#response');
@@ -122,6 +146,6 @@
             };
           };
         })();
-      </script>
+    </script>
   </div>
 </div>
