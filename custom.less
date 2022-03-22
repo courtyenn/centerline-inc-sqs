@@ -170,6 +170,39 @@ body#collection-613012714e477b5770fb4195 .header-announcement-bar-wrapper {
 
 /** End Precision Machining nad Grinding Page **/
 
+/** ---------------- CUSTOM FORM CSS----------------- **/
+
+/** File Upload **/
+.box__dragndrop,
+.box__uploading,
+.box__success,
+.box__error {
+  display: none;
+}
+
+.box.has-advanced-upload {
+  background-color: white;
+  outline: 2px dashed black;
+  outline-offset: -10px;
+}
+.box.has-advanced-upload .box__dragndrop {
+  display: inline;
+}
+
+.box.is-dragover {
+  background-color: grey;
+}
+
+.box.is-uploading .box__input {
+  visibility: none;
+}
+.box.is-uploading .box__uploading {
+  display: block;
+}
+
+/** End File Upload **/
+
+/** ---------------- END CUSTOM FORM CSS ------------------- **/
 /** FONTS **/
 
 @font-face {

@@ -1,6 +1,6 @@
 <div class="form-wrapper">
   <div class="form-inner-wrapper">
-    <form autocomplete="on" method="POST" action="" novalidate="">
+    <form id="centerline-form" autocomplete="on" novalidate="">
       <div class="field-list clear">
         <div class="form-item field text required">
 
@@ -60,6 +60,19 @@
           <textarea class="field-element"id="textarea-yui_3_17_2_1_1553888888520_3747-field"
             aria-required="true"></textarea>
         </div>
+        <div class="box__input">
+          <label class="title">
+            File Upload
+            <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected"
+          multiple />
+          <label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
+          <button class="box__button" type="submit">Upload</button>
+          </div>
+          <div class="box__uploading">Uploading…</div>
+          <div class="box__success">Done!</div>
+          <div class="box__error">Error! <span></span>.</div>
       </div>
 
       <div data-animation-role="button" class="form-button-wrapper
@@ -69,12 +82,46 @@
           value="Submit">
       </div>
 
-
-
       <div class="hidden form-submission-text">
         <p class="" style="white-space:pre-wrap;">Thank you!</p>
       </div>
       <div class="hidden form-submission-html" data-submission-html=""></div>
     </form>
+      <script>
+        (() => {
+          const form = document.querySelector('#centerline-form');
+          const submitResponse = document.querySelector('#response');
+          const formURL = 'https://8c4b8geecl.execute-api.us-west-1.amazonaws.com/Prod/submitForm';
+
+          form.onsubmit = e => {
+            e.preventDefault();
+
+            // Capture the form data
+            let data = {};
+            Array.from(form).map(input => (data[input.id] = input.value));
+            console.log('Sending: ', JSON.stringify(data));
+            submitResponse.innerHTML = 'Sending...'
+
+            // Create the AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open(form.method, formURL, true);
+            xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+            // Send the collected data as JSON
+            xhr.send(JSON.stringify(data));
+
+            xhr.onloadend = response => {
+              if (response.target.status === 200) {
+                form.reset();
+                submitResponse.innerHTML = 'Form submitted. Success!';
+              } else {
+                submitResponse.innerHTML = 'Error! Please try again.';
+                console.error(JSON.parse(response));
+              }
+            };
+          };
+        })();
+      </script>
   </div>
 </div>
