@@ -1,9 +1,28 @@
+/**
+<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+<script type="text/javascript">
+*/
+/**
+* Adobe View
+*/
+    document.addEventListener("adobe_dc_view_sdk.ready", function()
+    {
+        var adobeDCView = new AdobeDC.View({clientId: "<YOUR_CLIENT_ID>", divId: "adobe-dc-view"});
+        adobeDCView.previewFile(
+       {
+          content:   {location: {url: "http://www.pubs.centerline-inc.com/centerline/spindle_repair_information.pdf"}},
+          metaData: {fileName: "Bodea Brochure.pdf"}
+       });
+    });
+
+/**
+* Social Media Banner XD
+*/
 function detectMob() {
   return window.innerWidth <= 800 && window.innerHeight <= 600;
 }
-
-var node = document.createElement("div");
-node.className = "banner";
+var node = document.createElement('div');
+node.className = 'banner';
 
 var phone1 = document.createElement("a");
 phone1.href = "tel:580-762-5451";
@@ -24,16 +43,16 @@ var mailIcon = document.createElement("span");
 mailIcon.className = "icon-mail-alt";
 
 var contact = document.createElement("div");
+contact.className = "contact";
 contact.prepend(email);
 contact.prepend(mailIcon);
-contact.className = "contact";
 contact.prepend(phone2);
 contact.prepend(phoneIcon);
 contact.prepend(phone1);
 contact.prepend(phoneIcon.cloneNode());
 
-var social = document.createElement("div");
-social.className = "social";
+var social = document.createElement('div');
+social.className = 'social';
 
 social.innerHTML = `
 <a href="https://www.facebook.com/CenterlineInc/" target="_blank" class="sqs-svg-icon--wrapper facebook-unauth" aria-label="Facebook">
@@ -74,3 +93,4 @@ if (!detectMob()) {
     }
   });
 }
+// </script>
