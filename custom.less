@@ -176,7 +176,7 @@ body#collection-613012714e477b5770fb4195 .header-announcement-bar-wrapper {
 			.box
 				{
 					font-size: 1.25rem; /* 20 */
-					background-color: #ddd;
+					background-color: transparent;
 					position: relative;
 					padding: 25px;
           min-height: 200px;
@@ -185,7 +185,7 @@ body#collection-613012714e477b5770fb4195 .header-announcement-bar-wrapper {
 				}
 				.box.has-advanced-upload
 				{
-					outline: 2px dashed #eee;
+					outline: 2px dashed #bbb;
 					outline-offset: -10px;
 
 					-webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
@@ -194,7 +194,7 @@ body#collection-613012714e477b5770fb4195 .header-announcement-bar-wrapper {
 				.box.is-dragover
 				{
 					outline-offset: -20px;
-					outline-color: #c8dadf;
+					outline-color: #c8c8c8;
 					background-color: #fff;
 				}
 					.box__dragndrop,
@@ -339,13 +339,22 @@ body#collection-613012714e477b5770fb4195 .header-announcement-bar-wrapper {
             min-height: 198px;
             justify-content: center;
             cursor: pointer;
+
+            span {
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+              display: inline-block;
+              width: 110px !important;
+            }
           }
           .thumbnail {
             padding: 10px;
             font-size: 13px;
 
             img {
-              max-width: 100px;
+              width: 80px !important;
+              height: 66px;
               border: 1px solid black;
               padding: 10px;
               border-radius: 10px;

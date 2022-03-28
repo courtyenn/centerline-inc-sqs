@@ -70,7 +70,8 @@
            <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected"
           multiple accept="image/png,image/jpeg,.doc,.pdf " />
           </div>
-          <label class="file__label" for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
+          <label class="file__label" for="file">
+            <strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
           <button class="box__button" type="submit">Upload</button>
           </div>
           <div class="box__uploading">Uploading…</div>
@@ -126,12 +127,14 @@
             const src = URL.createObjectURL(file)
             newFile.src = src;
 
+            const contentSpan = document.createElement('span');
             const newContent = document.createTextNode(file.name);
+            contentSpan.append(newContent);
 
             const thumbnail = document.createElement('div');
             thumbnail.classList = ['thumbnail'];
 
-            thumbnail.append(newContent);
+            thumbnail.append(contentSpan);
             thumbnail.append(newFile);
 
             appendTo.append(thumbnail);
