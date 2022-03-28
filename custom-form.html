@@ -21,7 +21,7 @@
             autocomplete="email" spellcheck="false" aria-required="true">
         </div>
 
-        <fieldset class="form-item fields">
+        <div class="form-item field">
           <label class="title" for="phone">
             Phone
           </label>
@@ -31,7 +31,7 @@
               <!-- <span class="caption-text">(###)</span> -->
             </label>
           </div>
-        </fieldset>
+        </div>
 
         <div class="form-item field select required">
 
@@ -60,6 +60,7 @@
           <textarea class="field-element" id="message"
             aria-required="true"></textarea>
         </div>
+        <div class="form-item field">
         <label class="title" for="file">
           File Upload
           <span class="required" aria-hidden="true">*</span>
@@ -76,10 +77,10 @@
           <div class="box__success">Done!</div>
           <div class="box__error">Error! <span></span>.</div>
       </div>
+      </div>
 
       <div data-animation-role="button" class="form-button-wrapper form-button-wrapper--align-left">
-        <input class="button sqs-system-button sqs-editable-button sqs-button-element--primary" type="submit"
-          value="Submit">
+        <button class="button sqs-system-button sqs-editable-button sqs-button-element--primary" type="submit">Submit</button>
       </div>
 
       <div class="hidden form-submission-text">
