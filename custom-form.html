@@ -4,20 +4,20 @@
       <div class="field-list clear">
         <div class="form-item field text required">
 
-          <label class="title" for="text-3ac2e08c-5f1c-4684-ac86-58935b8b0793-field">
+          <label class="title" for="name">
             Name
             <span class="required" aria-hidden="true">*</span>
           </label>
-          <input class="field-element text" type="text" id="text-3ac2e08c-5f1c-4684-ac86-58935b8b0793-field"
+          <input class="field-element text" type="text" id="name"
             aria-required="true">
         </div>
 
-        <div id="email-yui_3_17_2_1_1553888888520_3745" class="form-item field email required">
-          <label class="title" for="email-yui_3_17_2_1_1553888888520_3745-field">
+        <div class="form-item field email required">
+          <label class="title" for="email">
             Email
             <span class="required" aria-hidden="true">*</span>
           </label>
-          <input class="field-element" id="email-yui_3_17_2_1_1553888888520_3745-field" name="email" type="email"
+          <input class="field-element" id="email" name="email" type="email"
             autocomplete="email" spellcheck="false" aria-required="true">
         </div>
 
@@ -33,14 +33,14 @@
           </div>
         </fieldset>
 
-        <div id="select-6943e413-fdfe-4370-97e8-081daac9877b" class="form-item field select required">
+        <div class="form-item field select required">
 
-          <label class="title" for="select-6943e413-fdfe-4370-97e8-081daac9877b-field">
+          <label class="title" for="spindle">
             Reason
             <span class="required" aria-hidden="true">*</span>
           </label>
-          <select id="select-6943e413-fdfe-4370-97e8-081daac9877b-field"
-            name="select-6943e413-fdfe-4370-97e8-081daac9877b-field" aria-required="true">
+          <select id="spindle"
+            name="spindle" aria-required="true">
             <optgroup label="Select a Spindle..">
             <option value="Sycotec">Sycotec</option>
             <option value="Henninger">Henninger</option>
@@ -52,22 +52,24 @@
           </select>
         </div>
 
-        <div id="textarea-yui_3_17_2_1_1553888888520_3747" class="form-item field textarea required">
-          <label class="title" for="textarea-yui_3_17_2_1_1553888888520_3747-field">
+        <div class="form-item field textarea required">
+          <label class="title" for="message">
             Message
             <span class="required" aria-hidden="true">*</span>
           </label>
-          <textarea class="field-element"id="textarea-yui_3_17_2_1_1553888888520_3747-field"
+          <textarea class="field-element" id="message"
             aria-required="true"></textarea>
         </div>
-        <div class="box__input">
-          <label class="title">
-            File Upload
-            <span class="required" aria-hidden="true">*</span>
-          </label>
-          <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected"
-          multiple />
-          <label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
+        <label class="title" for="file">
+          File Upload
+          <span class="required" aria-hidden="true">*</span>
+        </label>
+        <div class="box">
+          <div class="box__input">
+           <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected"
+          multiple accept="image/png,image/jpeg,.doc,.pdf " />
+          </div>
+          <label class="file__label" for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
           <button class="box__button" type="submit">Upload</button>
           </div>
           <div class="box__uploading">Uploading…</div>
@@ -75,9 +77,7 @@
           <div class="box__error">Error! <span></span>.</div>
       </div>
 
-      <div data-animation-role="button" class="form-button-wrapper
-
-        form-button-wrapper--align-left">
+      <div data-animation-role="button" class="form-button-wrapper form-button-wrapper--align-left">
         <input class="button sqs-system-button sqs-editable-button sqs-button-element--primary" type="submit"
           value="Submit">
       </div>
@@ -110,6 +110,158 @@
         }
 
         /** File Upload **/
+       ; (function ($, window, document, undefined) {
+          // feature detection for drag&drop upload
+
+          const _files = [];
+          var isAdvancedUpload = function () {
+            var div = document.createElement('div');
+            return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
+          }();
+
+          const appendFileThumbnail = (file, appendTo) => {
+            _files.push(file.name);
+            const newFile = document.createElement('img');
+            const src = URL.createObjectURL(file)
+            newFile.src = src;
+
+            const newContent = document.createTextNode(file.name);
+
+            const thumbnail = document.createElement('div');
+            thumbnail.classList = ['thumbnail'];
+
+            thumbnail.append(newContent);
+            thumbnail.append(newFile);
+
+            appendTo.append(thumbnail);
+          };
+
+
+            var $form = $("#centerline-form"),
+              $input = $form.find('input[type="file"]'),
+              $label = $form.find('.file__label'),
+              $errorMsg = $form.find('.box__error span'),
+              $restart = $form.find('.box__restart'),
+              $box = $form.find('.box'),
+              droppedFiles = false,
+              showFiles = function (files) {
+                console.log('files', files);
+                _files.length === 0 && $label.html('');
+                files.forEach(file => appendFileThumbnail(file, $label));
+                // $label.text(files.length > 1 ? ($input.attr('data-multiple-caption') || '').replace('{count}', files.length) : files[0].name);
+                // var src = URL.createObjectURL(files[0])
+                // var newImg = document.createElement('img');
+                // newImg.src = src;
+                // $form.append(newImg);
+              };
+
+            // letting the server side to know we are going to make an Ajax request
+            // $form.append('<input type="hidden" name="ajax" value="1" />');
+
+            // automatically submit the form on file select
+            $input.on('change', function (e) {
+              showFiles(e.target.files);
+              // $form.trigger('submit');
+            });
+
+            // drag&drop files if the feature is available
+            if (isAdvancedUpload) {
+              $box
+                .addClass('has-advanced-upload') // letting the CSS part to know drag&drop is supported by the browser
+                .on('drag dragstart dragend dragover dragenter dragleave drop', function (e) {
+                  // preventing the unwanted behaviours
+                  e.preventDefault();
+                  e.stopPropagation();
+                })
+                .on('dragover dragenter', function () //
+                {
+                  $box.addClass('is-dragover');
+                })
+                .on('dragleave dragend drop', function () {
+                  $box.removeClass('is-dragover');
+                })
+                .on('drop', function (e) {
+                  droppedFiles = e.originalEvent.dataTransfer.files; // the files that were dropped
+                  showFiles(droppedFiles);
+
+
+                  // $form.trigger('submit'); // automatically submit the form on file drop
+
+                });
+            }
+
+            // if the form was submitted
+            // $form.on('submit', function (e) {
+            //   // preventing the duplicate submissions if the current one is in progress
+            //   if ($form.hasClass('is-uploading')) return false;
+
+            //   $box.addClass('is-uploading').removeClass('is-error');
+
+            //   if (isAdvancedUpload) // ajax file upload for modern browsers
+            //   {
+            //     e.preventDefault();
+
+            //     // gathering the form data
+            //     var ajaxData = new FormData($form.get(0));
+            //     if (droppedFiles) {
+            //       $.each(droppedFiles, function (i, file) {
+            //         ajaxData.append($input.attr('name'), file);
+            //       });
+            //     }
+
+            //     // ajax request
+            //     $.ajax(
+            //       {
+            //         url: $form.attr('action'),
+            //         type: $form.attr('method'),
+            //         data: ajaxData,
+            //         dataType: 'json',
+            //         cache: false,
+            //         contentType: false,
+            //         processData: false,
+            //         complete: function () {
+            //           $box.removeClass('is-uploading');
+            //         },
+            //         success: function (data) {
+            //           $box.addClass(data.success == true ? 'is-success' : 'is-error');
+            //           if (!data.success) $errorMsg.text(data.error);
+            //         },
+            //         error: function () {
+            //           alert('Error. Please, contact the webmaster!');
+            //         }
+            //       });
+            //   }
+            //   else // fallback Ajax solution upload for older browsers
+            //   {
+            //     var iframeName = 'uploadiframe' + new Date().getTime(),
+            //       $iframe = $('<iframe name="' + iframeName + '" style="display: none;"></iframe>');
+
+            //     $('body').append($iframe);
+            //     $form.attr('target', iframeName);
+
+            //     $iframe.one('load', function () {
+            //       var data = $.parseJSON($iframe.contents().find('body').text());
+            //       $box.removeClass('is-uploading').addClass(data.success == true ? 'is-success' : 'is-error').removeAttr('target');
+            //       if (!data.success) $errorMsg.text(data.error);
+            //       $iframe.remove();
+            //     });
+            //   }
+            // });
+            // restart the form if has a state of error/success
+
+            $restart.on('click', function (e) {
+              e.preventDefault();
+              $box.removeClass('is-error is-success');
+              $input.trigger('click');
+              _files.splice(0, _files.length);
+            });
+
+            // Firefox focus bug fix for file input
+            $input
+              .on('focus', function () { $input.addClass('has-focus'); })
+              .on('blur', function () { $input.removeClass('has-focus'); });
+
+        })(jQuery, window, document);
 
         /** Submit to AWS **/
         (() => {
@@ -124,7 +276,7 @@
             let data = {};
             Array.from(form).map(input => (data[input.id] = input.value));
             console.log('Sending: ', JSON.stringify(data));
-            submitResponse.innerHTML = 'Sending...'
+            // submitResponse.innerHTML = 'Sending...'
 
             // Create the AJAX request
             var xhr = new XMLHttpRequest();
@@ -137,10 +289,11 @@
 
             xhr.onloadend = response => {
               if (response.target.status === 200) {
-                form.reset();
-                submitResponse.innerHTML = 'Form submitted. Success!';
+                console.log('success', response);
+                // form.reset();
+                // submitResponse.innerHTML = 'Form submitted. Success!';
               } else {
-                submitResponse.innerHTML = 'Error! Please try again.';
+                // submitResponse.innerHTML = 'Error! Please try again.';
                 console.error(JSON.parse(response));
               }
             };
