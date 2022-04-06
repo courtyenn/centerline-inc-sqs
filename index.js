@@ -6,8 +6,8 @@
         var adobeDCView = new AdobeDC.View({clientId: "<YOUR_CLIENT_ID>", divId: "adobe-dc-view"});
         adobeDCView.previewFile(
        {
-          content:   {location: {url: "http://www.pubs.centerline-inc.com/centerline/spindle_repair_information.pdf"}},
-          metaData: {fileName: "Bodea Brochure.pdf"}
+          content:   {location: {url: "https://centerline-inc.s3.us-west-1.amazonaws.com/spindle_repair_information.pdf"}},
+          metaData: {fileName: "SpindleRepairIntakeForm.pdf"}
        });
     });
 
