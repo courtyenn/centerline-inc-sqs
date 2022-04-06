@@ -1,2 +1,3 @@
-### To-do:
-- dynamically show banner if user resizes window
+# Centerline-Inc Squarespace Repo
+
+La la la la lala lalalalaalal

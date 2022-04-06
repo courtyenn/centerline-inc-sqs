@@ -1,0 +1,9 @@
+{
+  "name": "centerline-inc-sqs",
+  "version": "1.0.0",
+  "main": "script.js",
+  "repository": "git@github.com:courtyenn/centerline-inc-sqs.git",
+  "author": "Courtney Nguyen <hello@courtyen.io>",
+  "license": "MIT",
+  "private": "true"
+}
