@@ -5,5 +5,13 @@
   "repository": "git@github.com:courtyenn/centerline-inc-sqs.git",
   "author": "Courtney Nguyen <hello@courtyen.io>",
   "license": "MIT",
-  "private": "true"
+  "private": "true",
+  "scripts": {
+    "build": "gulp"
+  },
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-less": "^5.0.0",
+    "gulp-uglify": "^3.0.2"
+  }
 }
