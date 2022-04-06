@@ -3,7 +3,7 @@
 */
     document.addEventListener("adobe_dc_view_sdk.ready", function()
     {
-        var adobeDCView = new AdobeDC.View({clientId: "<YOUR_CLIENT_ID>", divId: "adobe-dc-view"});
+        var adobeDCView = new AdobeDC.View({clientId: "db1d46b06729458c93c8044ccd57cd57", divId: "adobe-dc-view"});
         adobeDCView.previewFile(
        {
           content:   {location: {url: "https://centerline-inc.s3.us-west-1.amazonaws.com/spindle_repair_information.pdf"}},
