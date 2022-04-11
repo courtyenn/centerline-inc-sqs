@@ -1,4 +1,15 @@
-<div class="form-wrapper">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test JS...</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+
+  <div class="form-wrapper">
   <div class="form-inner-wrapper">
     <form id="centerline-form" autocomplete="on" novalidate="">
       <div class="field-list clear">
@@ -99,28 +110,6 @@
       <div class="hidden form-submission-html" data-submission-html=""></div>
     </form>
     <script>
-      var telInput = document.querySelector("#phone");
-      var iti = window.intlTelInput(telInput, {
-        // any initialisation options go here
-        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.16/js/utils.min.js",
-        preferredCountries: ["US"],
-        nationalMode: false,
-        formatOnDisplay: true, // SET THIS!!!
-      });
-
-      telInput.addEventListener("keyup", formatIntlTelInput);
-      telInput.addEventListener("change", formatIntlTelInput);
-
-      function formatIntlTelInput() {
-        if (typeof intlTelInputUtils !== "undefined") {
-          // utils are lazy loaded, so must check
-          var currentText = iti.getNumber(intlTelInputUtils.numberFormat.E164);
-          if (typeof currentText === "string") {
-            // sometimes the currentText is an object :)
-            iti.setNumber(currentText); // will autoformat because of formatOnDisplay=true
-          }
-        }
-      }
 
       /** File Upload **/
       (function ($, window, document, undefined) {
@@ -274,7 +263,7 @@
           });
 
         const submitResponse = document.querySelector("#response");
-        const formURL = "https://8c4b8geecl.execute-api.us-west-1.amazonaws.com/Prod/CenterLineFormSubmission";
+        const formURL = "http://localhost:3000/upload";
 
         $form.on("submit", (e) => {
           e.preventDefault();
@@ -326,3 +315,7 @@
     </script>
   </div>
 </div>
+
+
+</body>
+</html>
