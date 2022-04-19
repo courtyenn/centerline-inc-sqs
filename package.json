@@ -6,7 +6,9 @@
   "author": "Courtney Nguyen <hello@courtyen.io>",
   "license": "MIT",
   "private": "true",
-  "workspaces": ["lambda"],
+  "workspaces": [
+    "lambda"
+  ],
   "scripts": {
     "build": "gulp",
     "start": "node ./lambda/server.js"

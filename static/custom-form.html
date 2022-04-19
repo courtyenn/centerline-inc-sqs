@@ -74,7 +74,7 @@
                 data-multiple-caption="{count} files selected"
                 multiple
                 accept="image/png,image/jpeg,.doc,.pdf "
-              />
+                />
             </div>
             <label class="file__label" for="file">
               <strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label
@@ -279,7 +279,7 @@
         $form.on("submit", (e) => {
           e.preventDefault();
           const formData = new FormData($form.get(0));
-
+          formData.delete('files[]');
           if (droppedFiles) {
             $.each(droppedFiles, function (i, file) {
               formData.append($input.attr("name"), file);
@@ -307,20 +307,6 @@
               console.log('error:', err);
             },
           });
-
-          // $.ajax(formURL, {
-          //   method: "POST",
-          //   processData: false,
-          //   contentType: false,
-          //   data: formData,
-          //   sucess: (res) => {
-          //     console.log("what is res?", res);
-          //   },
-          //   error: (res) => {
-          //     console.log("what is err?", res);
-          //   },
-          // });
-          // submitResponse.innerHTML = 'Sending...'
         });
       })(jQuery, window, document);
     </script>

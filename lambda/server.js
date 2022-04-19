@@ -32,9 +32,18 @@ app.post('/upload', (req, res) => {
     let message_id = '';
 
     const fromMessage = `
+    MIME-Version: 1.0
+    Content-Type: multipart/mixed; boundary=frontier
+
+    This is a message with multiple parts in MIME format.
     From: ${from_name} <${from_email}>
     To: ${to}
     Subject: ${subject}
+    --frontier
+    Content-Type: text/plain
+
+    This is the body of the message.
+    --frontier
     Content-Type: multipart/mixed;
       boundary="a3f166a86b56ff6c37755292d690675717ea3cd9de81228ec2b76ed4a15d6d1a"
 
