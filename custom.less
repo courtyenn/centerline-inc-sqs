@@ -9,22 +9,30 @@ a:not(.btn):hover {
 }
 
 .step {
-  display: inline-block;
-  h1 {
-  border-radius: 50%;
-  text-align: center;
-  padding: 20px 8px 0px 22px;
-  width: 63px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 1) 43%, rgba(204, 0, 0, 1) 47%, rgba(204, 0, 0, 1) 57%, rgba(255, 255, 255, 1) 60%);
-  color: #c00;
-  font-size: 67px;
+  h2 {
+    display: flex;
+    gap: 36px;
+    font-size: 32px;
+    align-items: center;
+    margin: 0;
+    &::before {
+      content: attr(data-step);
+      border-radius: 50%;
+      text-align: center;
+      padding: 20px 8px 8px 22px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 1) 43%, rgba(204, 0, 0, 1) 47%, rgba(204, 0, 0, 1) 57%, rgba(255, 255, 255, 1) 60%);
+      color: #c00 !important;
+      font-size: 67px;
+      margin: 0;
+      flex: 0 0 63px;
+    }
   }
 }
 
 /** Home page **/
 section[data-section-id="6191eb5820f31c383043f7de"] .section-background, section[data-section-id="6192047bc4e7fe54ea2ef64f"] .section-background {
   background-image: 	url('https://images.squarespace-cdn.com/content/v1/61301047fa54f4129939ecbe/0695b80d-75f1-44eb-9c6d-fded78009a10/gplay.png') !important;
-  background-color: #38352e !important;
+  background-color: #666666 !important;
   background-attachment: fixed;
   clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 52% 90%, 50% 100%, 48% 90%, 0% 90%);
 }
