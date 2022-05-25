@@ -147,7 +147,9 @@
           contentSpan.append(newContent);
 
           const thumbnail = document.createElement("div");
-          thumbnail.classList = ["thumbnail"];
+          const fileType = file.fileType.match(/\/?([\w]*)$/)[1];
+
+          thumbnail.classList = [`thumbnail ${fileType}`];
 
           thumbnail.append(contentSpan);
           thumbnail.append(newFile);
@@ -279,14 +281,11 @@
         $form.on("submit", (e) => {
           e.preventDefault();
           const formData = new FormData($form.get(0));
-          formData.delete('files[]');
           if (droppedFiles) {
             $.each(droppedFiles, function (i, file) {
-              formData.append($input.attr("name"), file);
+              formData.set($input.attr("name"), file);
             });
           }
-
-          console.log("Sending: ", formData);
 
           $.ajax({
             url: formURL,
