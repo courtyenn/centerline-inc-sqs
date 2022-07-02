@@ -11,13 +11,15 @@
     "pdf-viewer",
     "styles"
   ],
+  "source": [
+    "src/pdf-viewer/index.js"
+  ],
   "scripts": {
-    "build": "gulp",
-    "start": "node ./lambda/server.js"
+    "start": "parcel",
+    "build": "parcel build"
   },
-  "dependencies": {
-    "gulp": "^4.0.2",
-    "gulp-less": "^5.0.0",
-    "gulp-uglify": "^3.0.2"
+  "dependencies": {},
+  "devDependencies": {
+    "parcel": "^2.6.2"
   }
 }
