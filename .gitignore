@@ -5,3 +5,5 @@ dist/
 node_modules
 .parcel-cache
 *.map
+gallery.html
+yarn-error.log

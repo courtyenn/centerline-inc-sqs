@@ -1,0 +1,11 @@
+{
+  "name": "gallery",
+  "version": "1.0.0",
+  "description": "gallery",
+  "main": "index.tsx",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

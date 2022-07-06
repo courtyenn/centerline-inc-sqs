@@ -6,19 +6,22 @@
   "license": "MIT",
   "private": "true",
   "workspaces": [
-    "contact-us",
-    "pdf-viewer",
-    "styles"
+    "src/contact-us",
+    "src/pdf-viewer",
+    "src/styles",
+    "src/gallery"
   ],
   "source": [
     "src/pdf-viewer/index.js",
     "src/contact-us/index.ts",
-    "src/styles/custom.less"
+    "src/styles/custom.less",
+    "src/gallery/index.tsx"
   ],
   "scripts": {
     "start": "parcel",
     "watch": "parcel watch",
-    "build": "parcel build"
+    "build": "parcel build",
+    "gallery": "parcel watch src/gallery/index.tsx"
   },
   "targets": {
     "main": false
