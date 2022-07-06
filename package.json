@@ -1,7 +1,6 @@
 {
   "name": "centerline-inc-sqs",
   "version": "1.0.0",
-  "main": "script.js",
   "repository": "git@github.com:courtyenn/centerline-inc-sqs.git",
   "author": "Courtney Nguyen <hello@courtyen.io>",
   "license": "MIT",
@@ -12,14 +11,21 @@
     "styles"
   ],
   "source": [
-    "src/pdf-viewer/index.js"
+    "src/pdf-viewer/index.js",
+    "src/contact-us/index.ts",
+    "src/styles/custom.less"
   ],
   "scripts": {
     "start": "parcel",
+    "watch": "parcel watch",
     "build": "parcel build"
+  },
+  "targets": {
+    "main": false
   },
   "dependencies": {},
   "devDependencies": {
+    "@parcel/transformer-less": "^2.6.2",
     "parcel": "^2.6.2"
   }
 }
