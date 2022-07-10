@@ -1,5 +1,5 @@
 import { useState, useEffect, useReducer, useRef } from "react";
-import { Container, Card, Row, Col, ButtonGroup, Button, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Container, Card, Row, Col, ButtonGroup, Button, ListGroup, ListGroupItem, Accordion } from "react-bootstrap";
 import dummyData from "./demo/data.json";
 import Shuffle from "shufflejs";
 
@@ -13,10 +13,24 @@ type Product = {
 };
 
 const initialState = {
-  manufacturer: "",
+  manufacturers: [],
 };
 
 const galleryReducer = (prev, action) => {
+  switch (action.type) {
+    case "MANUFACTURER":
+      const indexOfItem = prev.manufacturers.indexOf(action.payload);
+      if (indexOfItem >= 0) {
+        const clone = prev.manufacturers.slice(0);
+        clone.splice(indexOfItem, 1);
+        return {
+          ...prev,
+          manufacturers: clone,
+        };
+      } else {
+        return { ...prev, manufacturers: [...prev.manufacturers, action.payload] };
+      }
+  }
   return prev;
 };
 
@@ -43,8 +57,20 @@ export const Gallery = () => {
     }
   }, [items]);
 
+  useEffect(() => {
+    if (state.manufacturers.length > 0 && shuffleInstance.current) {
+      shuffleInstance.current.filter((element) => {
+        const manufacturer = element.dataset.manufacturer;
+        return state.manufacturers.includes(manufacturer);
+      });
+    } else if (shuffleInstance.current) {
+      shuffleInstance.current.filter(Shuffle.ALL_ITEMS);
+    }
+  }, [state]);
+
   const selectManufacturer = (manu) => {
-    shuffleInstance.current.filter(manu);
+    dispatch({ type: "MANUFACTURER", payload: manu });
+    // shuffleInstance.current.filter(manu);
   };
 
   return (
@@ -54,23 +80,52 @@ export const Gallery = () => {
       </Row>
       <Row>
         <Col md={3}>
-          <ListGroup aria-label="Basic example">
-            <ListGroup.Item action variant="outline-primary" onClick={() => selectManufacturer("Alfred")}>
-              Alfred Jäger
-            </ListGroup.Item>
-            <ListGroup.Item action variant="outline-primary" onClick={() => selectManufacturer("Ortlieb")}>
-              Ortlieb
-            </ListGroup.Item>
-            <ListGroup.Item action variant="outline-primary" onClick={() => selectManufacturer("Sycotec")}>
-              Sycotec
-            </ListGroup.Item>
-          </ListGroup>
+          <Accordion>
+            <Accordion.Item eventKey="manufacturer">
+              <Accordion.Header>Manufacturer</Accordion.Header>
+              <Accordion.Body>
+                <ListGroup aria-label="Manufacturer options" variant="flush">
+                  <ListGroup.Item
+                    action
+                    variant="outline-primary"
+                    onClick={() => selectManufacturer("Alfred")}
+                    active={state.manufacturers.includes("Alfred") ? true : false}
+                  >
+                    Alfred Jäger
+                  </ListGroup.Item>
+                  <ListGroup.Item
+                    action
+                    variant="outline-primary"
+                    onClick={() => selectManufacturer("Ortlieb")}
+                    active={state.manufacturers.includes("Ortlieb") ? true : false}
+                  >
+                    Ortlieb
+                  </ListGroup.Item>
+                  <ListGroup.Item
+                    action
+                    variant="outline-primary"
+                    onClick={() => selectManufacturer("Sycotec")}
+                    active={state.manufacturers.includes("Sycotec") ? true : false}
+                  >
+                    Sycotec
+                  </ListGroup.Item>
+                </ListGroup>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
         </Col>
         <Col md={9}>
           <Row className="my-shuffle-container">
             <Col className="my-sizer-element" lg={3} sm={6}></Col>
             {items.map((i) => (
-              <Col key={i.id} lg={3} sm={6} className="picture-item" data-groups={`["${i.manufacturer}"]`}>
+              <Col
+                key={i.id}
+                lg={3}
+                sm={6}
+                className="picture-item"
+                data-groups={`["${i.manufacturer}"]`}
+                data-manufacturer={i.manufacturer}
+              >
                 <Card style={{ marginBottom: "10px" }}>
                   <Card.Img variant="top" src={i.imageSrc} />
                   <Card.Body>
