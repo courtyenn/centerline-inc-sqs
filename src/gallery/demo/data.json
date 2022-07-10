@@ -1,0 +1,76 @@
+{
+  "hits": [
+    {
+      "id": 1,
+      "manufacturer": "Alfred",
+      "name": "Spindle 1",
+      "SKU": "234",
+      "imageSrc": "ka1-03-50.png",
+      "description": "Lalalalalala"
+    },
+    {
+      "id": 2,
+      "manufacturer": "Ortlieb",
+      "name": "Spindle 2",
+      "SKU": "feafewafa",
+      "imageSrc": "ka1-03-50.png",
+      "description": "mewmafmoewamfe"
+    },
+    {
+      "id": 3,
+      "manufacturer": "Sycotec",
+      "name": "Spindle 3",
+      "SKU": "99feakk",
+      "imageSrc": "ka1-03-50.png",
+      "description": "jajajaj"
+    },
+    {
+      "id": 4,
+      "manufacturer": "Alfred",
+      "name": "Spindle 4",
+      "SKU": "234",
+      "imageSrc": "ka1-03-50.png",
+      "description": "Lalalalalala"
+    },
+    {
+      "id": 5,
+      "manufacturer": "Ortlieb",
+      "name": "Spindle 5",
+      "SKU": "feafewafa",
+      "imageSrc": "ka1-03-50.png",
+      "description": "mewmafmoewamfe"
+    },
+    {
+      "id": 6,
+      "manufacturer": "Sycotec",
+      "name": "Spindle 6",
+      "SKU": "99feakk",
+      "imageSrc": "ka1-03-50.png",
+      "description": "jajajaj"
+    },
+    {
+      "id": 7,
+      "manufacturer": "Alfred",
+      "name": "Spindle 7",
+      "SKU": "234",
+      "imageSrc": "ka1-03-50.png",
+      "description": "Lalalalalala"
+    },
+    {
+      "id": 8,
+      "manufacturer": "Ortlieb",
+      "name": "Spindle 8",
+      "SKU": "feafewafa",
+      "imageSrc": "ka1-03-50.png",
+      "description": "mewmafmoewamfe"
+    },
+    {
+      "id": 9,
+      "manufacturer": "Sycotec",
+      "name": "Spindle 9",
+      "SKU": "99feakk",
+      "imageSrc": "ka1-03-50.png",
+      "description": "jajajaj"
+    }
+  ]
+}

@@ -1,7 +1,12 @@
 import { createRoot } from "react-dom/client";
+import { Gallery } from "./Gallery";
 
 const App = () => {
-  return <h2>Hello world</h2>;
+  return (
+    <div>
+      <Gallery />
+    </div>
+  );
 };
 
 const container = document.getElementById("app");
