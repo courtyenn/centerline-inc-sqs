@@ -1,5 +1,5 @@
-import { useState, useEffect, useReducer, useRef } from "react";
-import { Container, Card, Row, Col, ButtonGroup, Button, ListGroup, ListGroupItem, Accordion } from "react-bootstrap";
+import React, { useState, useEffect, useReducer, useRef } from "react";
+import { Container, Card, Row, Col, ListGroup, ListGroupItem, Accordion } from "react-bootstrap";
 import dummyData from "./demo/data.json";
 import Shuffle from "shufflejs";
 
@@ -58,7 +58,7 @@ export const Gallery = () => {
   }, [items]);
 
   useEffect(() => {
-    if (state.manufacturers.length > 0 && shuffleInstance.current) {
+    if (state.manufacturers.length > 0 && shuffleInstance.current && Array.isArray(shuffleInstance.current) === true) {
       shuffleInstance.current.filter((element) => {
         const manufacturer = element.dataset.manufacturer;
         return state.manufacturers.includes(manufacturer);
@@ -70,7 +70,6 @@ export const Gallery = () => {
 
   const selectManufacturer = (manu) => {
     dispatch({ type: "MANUFACTURER", payload: manu });
-    // shuffleInstance.current.filter(manu);
   };
 
   return (
@@ -83,7 +82,7 @@ export const Gallery = () => {
           <Accordion>
             <Accordion.Item eventKey="manufacturer">
               <Accordion.Header>Manufacturer</Accordion.Header>
-              <Accordion.Body>
+              <Accordion.Body style={{ padding: 0 }}>
                 <ListGroup aria-label="Manufacturer options" variant="flush">
                   <ListGroup.Item
                     action
@@ -135,7 +134,7 @@ export const Gallery = () => {
                     <Card.Text>{i.description}</Card.Text>
                   </Card.Body>
                   <ListGroup className="list-group-flush">
-                    <ListGroupItem>Manufaturer: {i.manufacturer}</ListGroupItem>
+                    <ListGroupItem>Manufacturer: {i.manufacturer}</ListGroupItem>
                   </ListGroup>
                 </Card>
               </Col>
