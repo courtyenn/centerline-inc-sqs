@@ -36,11 +36,10 @@ phases:
   build:
     commands:
       yarn install
+      # - command
+  post_build:
+    commands:
       yarn start
-      # - command
-  #post_build:
-    #commands:
-      # - command
       # - command
 #reports:
   #report-name-or-arn:
