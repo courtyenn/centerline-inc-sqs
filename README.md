@@ -10,3 +10,4 @@ This is a lib that contains several smaller custom libraries:
 3. pdf-viewer
 4. styles
 5. static
+6. server
