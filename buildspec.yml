@@ -29,17 +29,17 @@ phases:
       # name: version
     commands:
       npm install yarn
-  #pre_build:
-    #commands:
-      # - command
-      # - command
-  build:
+  pre_build:
     commands:
       yarn install
       # - command
-  post_build:
+  build:
     commands:
       yarn start
+      # - command
+  #post_build:
+    #commands:
+      #yarn start
       # - command
 #reports:
   #report-name-or-arn:
