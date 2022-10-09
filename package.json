@@ -18,7 +18,6 @@
     "src/gallery/index.tsx"
   ],
   "scripts": {
-    "start": "parcel",
     "watch": "parcel watch",
     "build": "parcel build",
     "gallery": "parcel watch src/gallery/index.tsx"
