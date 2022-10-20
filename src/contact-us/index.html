@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test JS...</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-</head>
-<body>
-
-  <div class="form-wrapper">
+<div class="form-wrapper">
   <div class="form-inner-wrapper">
     <form id="centerline-form" autocomplete="on" novalidate="">
       <div class="field-list clear">
@@ -18,7 +7,7 @@
             Name
             <span class="required" aria-hidden="true">*</span>
           </label>
-          <input class="field-element text" type="text" id="name" aria-required="true" name="name" />
+          <input class="field-element text" type="text" id="name" aria-required="true" name="name" required/>
         </div>
 
         <div class="form-item field email required">
@@ -34,6 +23,7 @@
             autocomplete="email"
             spellcheck="false"
             aria-required="true"
+            required
           />
         </div>
 
@@ -41,7 +31,7 @@
           <label class="title" for="phone">Phone</label>
           <div class="field text">
             <label class="caption">
-              <input id="phone" class="field-element phone" type="tel" type="phone" name="phone"/>
+              <input id="phone" class="field-element phone" type="tel" type="phone" name="phone" pattern="[0-9]{10}"/>
             </label>
           </div>
         </div>
@@ -51,7 +41,7 @@
             Reason
             <span class="required" aria-hidden="true">*</span>
           </label>
-          <select id="spindle" name="spindle" aria-required="true">
+          <select id="spindle" name="spindle" aria-required="true" required>
             <optgroup label="Select a Spindle..">
               <option value="Sycotec">Sycotec</option>
               <option value="Henninger">Henninger</option>
@@ -68,7 +58,7 @@
             Message
             <span class="required" aria-hidden="true">*</span>
           </label>
-          <textarea class="field-element" id="message" aria-required="true" name="message"></textarea>
+          <textarea class="field-element" id="message" aria-required="true" name="message" required></textarea>
         </div>
         <div class="form-item field">
           <label class="title" for="file">
@@ -85,7 +75,8 @@
                 data-multiple-caption="{count} files selected"
                 multiple
                 accept="image/png,image/jpeg,.doc,.pdf "
-              />
+                required
+                />
             </div>
             <label class="file__label" for="file">
               <strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label
@@ -110,6 +101,28 @@
       <div class="hidden form-submission-html" data-submission-html=""></div>
     </form>
     <script>
+      var telInput = document.querySelector("#phone");
+      var iti = window.intlTelInput(telInput, {
+        // any initialisation options go here
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.16/js/utils.min.js",
+        preferredCountries: ["US"],
+        nationalMode: false,
+        formatOnDisplay: true, // SET THIS!!!
+      });
+
+      telInput.addEventListener("keyup", formatIntlTelInput);
+      telInput.addEventListener("change", formatIntlTelInput);
+
+      function formatIntlTelInput() {
+        if (typeof intlTelInputUtils !== "undefined") {
+          // utils are lazy loaded, so must check
+          var currentText = iti.getNumber(intlTelInputUtils.numberFormat.E164);
+          if (typeof currentText === "string") {
+            // sometimes the currentText is an object :)
+            iti.setNumber(currentText); // will autoformat because of formatOnDisplay=true
+          }
+        }
+      }
 
       /** File Upload **/
       (function ($, window, document, undefined) {
@@ -154,9 +167,10 @@
         let droppedFiles = false;
 
         showFiles = function (files) {
-          console.log("files", files);
+          // console.log("files", files);
           _files.length === 0 && $label.html("");
-          files.forEach((file) => appendFileThumbnail(file, $label));
+          Array.from(files).forEach((file) => appendFileThumbnail(file, $label));
+          // $label.text(files.length > 1 ? ($input.attr('data-multiple-caption') || '').replace('{count}', files.length) : files[0].name);
         };
 
         $input.on("change", function (e) {
@@ -182,8 +196,69 @@
             .on("drop", function (e) {
               droppedFiles = e.originalEvent.dataTransfer.files; // the files that were dropped
               showFiles(droppedFiles);
+
+              // $form.trigger('submit'); // automatically submit the form on file drop
             });
         }
+
+        // if the form was submitted
+        // $form.on('submit', function (e) {
+        //   // preventing the duplicate submissions if the current one is in progress
+        //   if ($form.hasClass('is-uploading')) return false;
+
+        //   $box.addClass('is-uploading').removeClass('is-error');
+
+        //   if (isAdvancedUpload) // ajax file upload for modern browsers
+        //   {
+        //     e.preventDefault();
+
+        //     // gathering the form data
+        //     var ajaxData = new FormData($form.get(0));
+        //     if (droppedFiles) {
+        //       $.each(droppedFiles, function (i, file) {
+        //         ajaxData.append($input.attr('name'), file);
+        //       });
+        //     }
+
+        //     // ajax request
+        //     $.ajax(
+        //       {
+        //         url: $form.attr('action'),
+        //         type: $form.attr('method'),
+        //         data: ajaxData,
+        //         dataType: 'json',
+        //         cache: false,
+        //         contentType: false,
+        //         processData: false,
+        //         complete: function () {
+        //           $box.removeClass('is-uploading');
+        //         },
+        //         success: function (data) {
+        //           $box.addClass(data.success == true ? 'is-success' : 'is-error');
+        //           if (!data.success) $errorMsg.text(data.error);
+        //         },
+        //         error: function () {
+        //           alert('Error. Please, contact the webmaster!');
+        //         }
+        //       });
+        //   }
+        //   else // fallback Ajax solution upload for older browsers
+        //   {
+        //     var iframeName = 'uploadiframe' + new Date().getTime(),
+        //       $iframe = $('<iframe name="' + iframeName + '" style="display: none;"></iframe>');
+
+        //     $('body').append($iframe);
+        //     $form.attr('target', iframeName);
+
+        //     $iframe.one('load', function () {
+        //       var data = $.parseJSON($iframe.contents().find('body').text());
+        //       $box.removeClass('is-uploading').addClass(data.success == true ? 'is-success' : 'is-error').removeAttr('target');
+        //       if (!data.success) $errorMsg.text(data.error);
+        //       $iframe.remove();
+        //     });
+        //   }
+        // });
+        // restart the form if has a state of error/success
 
         $restart.on("click", function (e) {
           e.preventDefault();
@@ -201,19 +276,18 @@
           });
 
         const submitResponse = document.querySelector("#response");
-        const formURL = "http://localhost:3000/upload";
+        const formURL = "https://8c4b8geecl.execute-api.us-west-1.amazonaws.com/Prod/CenterLineFormSubmission";
 
         $form.on("submit", (e) => {
           e.preventDefault();
           const formData = new FormData($form.get(0));
-
           if (droppedFiles) {
             $.each(droppedFiles, function (i, file) {
-              formData.append($input.attr("name"), file);
+              formData.set($input.attr("name"), file);
             });
           }
 
-          console.log("Sending: ", formData);
+          console.log("Sending: ", formData.get('files[]'));
 
           $.ajax({
             url: formURL,
@@ -239,7 +313,3 @@
     </script>
   </div>
 </div>
-
-
-</body>
-</html>

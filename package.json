@@ -9,7 +9,8 @@
     "src/contact-us",
     "src/pdf-viewer",
     "src/styles",
-    "src/gallery"
+    "src/gallery",
+    "src/static"
   ],
   "source": [
     "src/pdf-viewer/index.js",
@@ -25,10 +26,15 @@
   "targets": {
     "main": false
   },
+  "staticFiles": {
+    "staticPath": "src/static/images",
+    "staticOutPath": "static"
+  },
   "dependencies": {},
   "devDependencies": {
     "@parcel/transformer-less": "^2.6.2",
     "parcel": "^2.6.2",
+    "parcel-reporter-static-files-copy": "^1.4.0",
     "process": "^0.11.10"
   }
 }
