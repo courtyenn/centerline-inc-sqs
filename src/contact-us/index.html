@@ -63,7 +63,6 @@
         <div class="form-item field">
           <label class="title" for="file">
             File Upload
-            <span class="required" aria-hidden="true">*</span>
           </label>
           <div class="box">
             <div class="box__input">
@@ -74,8 +73,7 @@
                 id="file"
                 data-multiple-caption="{count} files selected"
                 multiple
-                accept="image/png,image/jpeg,.doc,.pdf "
-                required
+                accept="image/png,image/jpeg,.doc,.pdf"
                 />
             </div>
             <label class="file__label" for="file">
@@ -89,8 +87,12 @@
         </div>
       </div>
 
+      <div class="error-box" aria-hidden="true">
+        <p id="required">There are missing fields. Please fill them out.</p>
+      </div>
+
       <div data-animation-role="button" class="form-button-wrapper form-button-wrapper--align-left">
-        <button class="button sqs-system-button sqs-editable-button sqs-button-element--primary" type="submit">
+        <button id="submit" class="button sqs-system-button sqs-editable-button sqs-button-element--primary" type="submit">
           Submit
         </button>
       </div>
@@ -101,8 +103,9 @@
       <div class="hidden form-submission-html" data-submission-html=""></div>
     </form>
     <script>
-      var telInput = document.querySelector("#phone");
-      var iti = window.intlTelInput(telInput, {
+      const telInput = document.querySelector("#phone");
+      const submit = document.getElementById('submit');
+      const iti = window.intlTelInput(telInput, {
         // any initialisation options go here
         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.16/js/utils.min.js",
         preferredCountries: ["US"],
@@ -141,15 +144,21 @@
         const appendFileThumbnail = (file, appendTo) => {
           _files.push(file);
           const newFile = document.createElement("img");
-          const src = URL.createObjectURL(file);
-          newFile.src = src;
 
           const contentSpan = document.createElement("span");
           const newContent = document.createTextNode(file.name);
           contentSpan.append(newContent);
 
           const thumbnail = document.createElement("div");
-          thumbnail.classList = ["thumbnail"];
+          const classList = 'thumbnail';
+          if(file.type.includes('pdf')){
+            classList += ' pdf';
+            newFile.src = 'https://centerline-inc.s3.us-west-1.amazonaws.com/dist/static/pdf-icon.png';
+          } else {
+            const src = URL.createObjectURL(file);
+            newFile.src = src;
+          }
+          thumbnail.classList = classList;
 
           thumbnail.append(contentSpan);
           thumbnail.append(newFile);
@@ -166,12 +175,20 @@
 
         let droppedFiles = false;
 
-        showFiles = function (files) {
+        const showFiles = function (files) {
           // console.log("files", files);
           _files.length === 0 && $label.html("");
           Array.from(files).forEach((file) => appendFileThumbnail(file, $label));
           // $label.text(files.length > 1 ? ($input.attr('data-multiple-caption') || '').replace('{count}', files.length) : files[0].name);
         };
+
+        const showError = (name) => {
+          $form.addClass(`is-error ${name}`);
+        }
+
+        $form.on('change', () => {
+          $form.removeClass('is-error');
+        });
 
         $input.on("change", function (e) {
           showFiles(e.target.files);
@@ -196,69 +213,8 @@
             .on("drop", function (e) {
               droppedFiles = e.originalEvent.dataTransfer.files; // the files that were dropped
               showFiles(droppedFiles);
-
-              // $form.trigger('submit'); // automatically submit the form on file drop
             });
         }
-
-        // if the form was submitted
-        // $form.on('submit', function (e) {
-        //   // preventing the duplicate submissions if the current one is in progress
-        //   if ($form.hasClass('is-uploading')) return false;
-
-        //   $box.addClass('is-uploading').removeClass('is-error');
-
-        //   if (isAdvancedUpload) // ajax file upload for modern browsers
-        //   {
-        //     e.preventDefault();
-
-        //     // gathering the form data
-        //     var ajaxData = new FormData($form.get(0));
-        //     if (droppedFiles) {
-        //       $.each(droppedFiles, function (i, file) {
-        //         ajaxData.append($input.attr('name'), file);
-        //       });
-        //     }
-
-        //     // ajax request
-        //     $.ajax(
-        //       {
-        //         url: $form.attr('action'),
-        //         type: $form.attr('method'),
-        //         data: ajaxData,
-        //         dataType: 'json',
-        //         cache: false,
-        //         contentType: false,
-        //         processData: false,
-        //         complete: function () {
-        //           $box.removeClass('is-uploading');
-        //         },
-        //         success: function (data) {
-        //           $box.addClass(data.success == true ? 'is-success' : 'is-error');
-        //           if (!data.success) $errorMsg.text(data.error);
-        //         },
-        //         error: function () {
-        //           alert('Error. Please, contact the webmaster!');
-        //         }
-        //       });
-        //   }
-        //   else // fallback Ajax solution upload for older browsers
-        //   {
-        //     var iframeName = 'uploadiframe' + new Date().getTime(),
-        //       $iframe = $('<iframe name="' + iframeName + '" style="display: none;"></iframe>');
-
-        //     $('body').append($iframe);
-        //     $form.attr('target', iframeName);
-
-        //     $iframe.one('load', function () {
-        //       var data = $.parseJSON($iframe.contents().find('body').text());
-        //       $box.removeClass('is-uploading').addClass(data.success == true ? 'is-success' : 'is-error').removeAttr('target');
-        //       if (!data.success) $errorMsg.text(data.error);
-        //       $iframe.remove();
-        //     });
-        //   }
-        // });
-        // restart the form if has a state of error/success
 
         $restart.on("click", function (e) {
           e.preventDefault();
@@ -281,13 +237,21 @@
         $form.on("submit", (e) => {
           e.preventDefault();
           const formData = new FormData($form.get(0));
+
+          if(!formData.get('name') || !formData.get('message') || !formData.get('email') || !formData.get('phone') || !formData.get('reason')) {
+            showError('required');
+            return;
+          }
+
           if (droppedFiles) {
+            if(droppedFiles)
             $.each(droppedFiles, function (i, file) {
               formData.set($input.attr("name"), file);
             });
           }
 
           console.log("Sending: ", formData.get('files[]'));
+
 
           $.ajax({
             url: formURL,
