@@ -171,6 +171,7 @@
           $label = $form.find(".file__label"),
           $errorMsg = $form.find(".box__error span"),
           $restart = $form.find(".box__restart"),
+          $errorBox = $form.find('.error-box'),
           $box = $form.find(".box");
 
         let droppedFiles = false;
@@ -183,11 +184,11 @@
         };
 
         const showError = (name) => {
-          $form.addClass(`is-error ${name}`);
+          $errorBox.addClass(`${name}`);
         }
 
         $form.on('change', () => {
-          $form.removeClass('is-error');
+          $errorBox.removeClass('required');
         });
 
         $input.on("change", function (e) {
