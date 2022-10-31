@@ -142,7 +142,10 @@ a:not(.btn):hover {
 .header-nav-item.header-nav-item--folder.header-nav-item--active>a {
   border-bottom: 1px solid #cc0000;
 }
-body:not(.header--menu-open) .header-nav-item--active {
+body:not(.header--menu-open) .header-nav-folder-item--active {
+  .header-nav-folder-item-content {
+    background-image: none;
+  }
   > a {
     background-image: none;
     &:hover {
