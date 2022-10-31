@@ -139,6 +139,17 @@ a:not(.btn):hover {
   height: 1px;
   transition: all 0.25s;
 }
+.header-nav-item.header-nav-item--folder.header-nav-item--active>a {
+  border-bottom: 1px solid #cc0000;
+}
+body:not(.header--menu-open) .header-nav-item--active {
+  > a {
+    background-image: none;
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+}
 .header-nav-item:not(.header-nav-item--folder) a:hover:after {
   width: 100%;
 }
