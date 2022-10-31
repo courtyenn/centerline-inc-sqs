@@ -139,7 +139,8 @@ a:not(.btn):hover {
   height: 1px;
   transition: all 0.25s;
 }
-.header-nav-item.header-nav-item--folder.header-nav-item--active>a {
+.header-nav-item.header-nav-item--folder.header-nav-item--active > a,
+:not(.header--menu-open) .header-nav-wrapper .header-nav-item--active > a {
   border-bottom: 1px solid #cc0000;
 }
 body:not(.header--menu-open) .header-nav-folder-item--active {
