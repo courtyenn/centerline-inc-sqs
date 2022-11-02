@@ -112,12 +112,17 @@ a:not(.btn):hover {
 /** End Banner **/
 
 /** Slideshow **/
-.slides--initialized {
-  min-height: 77vh !important;
+@slideshowHeight: 76vh;
+.user-items-list-banner-slideshow  {
+  &[data-card-horizontal-position="left"] .slide {
+    height: @slideshowHeight;
+  }
+  .slideshow-wrapper {
+    height: @slideshowHeight;
+  }
 }
-
-.user-items-list-banner-slideshow .slides{
-  line-height: .2;
+.slides--initialized {
+  height: @slideshowHeight !important;
 }
 
 /** End Slideshow **/
@@ -142,6 +147,7 @@ a:not(.btn):hover {
 .header-nav-item.header-nav-item--folder.header-nav-item--active > a,
 :not(.header--menu-open) .header-nav-wrapper .header-nav-item--active > a {
   border-bottom: 1px solid #cc0000;
+  background-image: none;
 }
 body:not(.header--menu-open) .header-nav-folder-item--active {
   .header-nav-folder-item-content {
