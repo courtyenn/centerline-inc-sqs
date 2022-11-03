@@ -42,12 +42,18 @@
             <span class="required" aria-hidden="true">*</span>
           </label>
           <select id="spindle" name="spindle" aria-required="true" required>
-            <optgroup label="Select a Spindle..">
-              <option value="Sycotec">Sycotec</option>
-              <option value="Henninger">Henninger</option>
-              <option value="Orlieb">Orlieb</option>
+            <option disabled selected value>-- select reason --</option>
+            <optgroup label="Services">
+              <option value="grinding">Custom Grinding</option>
+              <option value="repair">Repair Spindle</option>
+              <option value="taper">Tapered Grinding (LOCAL ONLY)</option>
+            </optgroup>
+            <optgroup label="Buy New Spindle">
               <option value="Alfred Jaeger">Alfred Jaeger</option>
+              <option value="Henninger">Henninger</option>
+              <option value="Ortlieb">Ortlieb</option>
               <option value="Renaud">Renaud</option>
+              <option value="Sycotec">Sycotec</option>
               <option value="Other">Other</option>
             </optgroup>
           </select>
@@ -239,7 +245,7 @@
           e.preventDefault();
           const formData = new FormData($form.get(0));
 
-          if(!formData.get('name') || !formData.get('message') || !formData.get('email') || !formData.get('phone') || !formData.get('reason')) {
+          if(!formData.get('name') || !formData.get('message') || !formData.get('email') || !formData.get('phone') || !formData.get('spindle')) {
             showError('required');
             return;
           }

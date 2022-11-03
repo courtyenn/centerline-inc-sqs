@@ -45,7 +45,7 @@ function formatIntlTelInput() {
     contentSpan.append(newContent);
 
     const thumbnail = document.createElement("div");
-    const classList = "thumbnail";
+    let classList = "thumbnail";
     if (file.type.includes("pdf")) {
       classList += " pdf";
       newFile.src = "https://centerline-inc.s3.us-west-1.amazonaws.com/dist/static/pdf-icon.png";
