@@ -1,3 +1,7 @@
+@primary: #32273B;
+@secondary: #DDDDDD;
+@highlight: #CC0000;
+
 /** GLOBAL **/
 input, select, textarea {
   font-size: 1rem !important;
@@ -24,10 +28,13 @@ a:not(.btn):hover {
 #collection-6130147c438f0945b3700487 .header-announcement-bar-wrapper, /** Contact Us **/
 #collection-613012714e477b5770fb418d .header-announcement-bar-wrapper, /** Spindle Repair **/
 #collection-613019bae371f51639557232 .header-announcement-bar-wrapper /** About Us **/ {
-  background: linear-gradient(#ccc, transparent);
+  background: linear-gradient(@secondary, transparent);
 
   .box.is-dragover {
     background-color: #f8f8f8;
+  }
+  .header-nav-folder-item {
+    background: @secondary !important;
   }
 }
 
