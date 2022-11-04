@@ -129,6 +129,13 @@ a:not(.btn):hover {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  & span:nth-of-type(-n+3)::after { /** Select first 3 **/
+    content: '•';
+    position: absolute;
+    margin-left: 5vw;
+    font-size: 15px;
+    line-height: 15px;
+  }
 }
 
 /** End Banner **/
