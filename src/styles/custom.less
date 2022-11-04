@@ -185,6 +185,14 @@ body:not(.header--menu-open) .header-nav-folder-item--active {
     }
   }
 }
+
+@headerHeight: 15vh;
+body.tweak-transparent-header .header:not(.shrink):not(.transparent-header-theme--override){
+  height: @headerHeight;
+}
+.header-announcement-bar-wrapper {
+  padding: 0 3vw !important;
+}
 .header-nav-item:not(.header-nav-item--folder) a:hover:after {
   width: 100%;
 }
