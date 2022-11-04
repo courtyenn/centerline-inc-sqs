@@ -34,7 +34,10 @@ a:not(.btn):hover {
     background-color: #f8f8f8;
   }
   .header-nav-folder-item {
-    background: @secondary !important;
+    background: hsl(0deg 0% 95% / 30%) !important;
+    &:hover {
+      background: hsl(0deg 0% 95%) !important;
+    }
   }
 }
 
@@ -237,10 +240,10 @@ body.tweak-transparent-header .header:not(.shrink):not(.transparent-header-theme
   background: white;
   padding: 8px;
   border-bottom: 1px solid rgba(0,0,0,.1);
-}
 
-.header-nav-folder-item:hover {
-  background: hsl(0, 0, 90%);
+  &:hover {
+    background: hsl(0, 0, 90%);
+  }
 }
 
 .header-nav-folder-item a {
