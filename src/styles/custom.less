@@ -15,6 +15,11 @@ a:not(.btn):hover {
   transition: all 0.25s !important;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
 .code-block {
   padding: 0;
 }
@@ -551,8 +556,8 @@ body#collection-613012714e477b5770fb4195 .header-announcement-bar-wrapper {
 
 @font-face {
   font-family: 'fontello';
-  src: url('https://static1.squarespace.com/static/61301047fa54f4129939ecbe/t/621f09eb25a93f3d5872d05f/1646201323668/fontello.eot') format('embedded-opentype'),
-    url('https://static1.squarespace.com/static/61301047fa54f4129939ecbe/t/621f09f2ab373033413576e8/1646201330024/fontello.ttf') format('woff');
+  src: url('https://centerline-inc.s3.us-west-1.amazonaws.com/font/fontello.eot') format('embedded-opentype'),
+    url('https: //centerline-inc.s3.us-west-1.amazonaws.com/font/fontello.ttf') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -592,42 +597,283 @@ body#collection-613012714e477b5770fb4195 .header-announcement-bar-wrapper {
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-tag:before { content: '\e800'; } /* '' */
-.icon-tags:before { content: '\e801'; } /* '' */
-.icon-flag:before { content: '\e802'; } /* '' */
-.icon-users:before { content: '\e803'; } /* '' */
-.icon-help-circled:before { content: '\e804'; } /* '' */
-.icon-comment:before { content: '\e805'; } /* '' */
-.icon-book:before { content: '\e806'; } /* '' */
-.icon-search:before { content: '\e807'; } /* '' */
-.icon-truck:before { content: '\e808'; } /* '' */
-.icon-mail:before { content: '\e809'; } /* '' */
-.icon-ok:before { content: '\e80a'; } /* '' */
-.icon-thumbs-up:before { content: '\e80b'; } /* '' */
-.icon-thumbs-down:before { content: '\e80c'; } /* '' */
-.icon-phone:before { content: '\e80d'; } /* '' */
-.icon-magnet:before { content: '\e80e'; } /* '' */
-.icon-credit-card:before { content: '\e80f'; } /* '' */
-.icon-wrench:before { content: '\e810'; } /* '' */
-.icon-cog-alt:before { content: '\e811'; } /* '' */
-.icon-cog:before { content: '\e812'; } /* '' */
-.icon-rss:before { content: '\f09e'; } /* '' */
-.icon-beaker:before { content: '\f0c3'; } /* '' */
-.icon-docs:before { content: '\f0c5'; } /* '' */
-.icon-mail-alt:before { content: '\f0e0'; } /* '' */
-.icon-comment-empty:before { content: '\f0e5'; } /* '' */
-.icon-doc-text:before { content: '\f0f6'; } /* '' */
-.icon-angle-left:before { content: '\f104'; } /* '' */
-.icon-angle-right:before { content: '\f105'; } /* '' */
-.icon-angle-up:before { content: '\f106'; } /* '' */
-.icon-angle-down:before { content: '\f107'; } /* '' */
-.icon-flag-checkered:before { content: '\f11e'; } /* '' */
-.icon-help:before { content: '\f128'; } /* '' */
-.icon-rss-squared:before { content: '\f143'; } /* '' */
-.icon-doc-text-inv:before { content: '\f15c'; } /* '' */
-.icon-down:before { content: '\f175'; } /* '' */
-.icon-up:before { content: '\f176'; } /* '' */
-.icon-left:before { content: '\f177'; } /* '' */
-.icon-right:before { content: '\f178'; } /* '' */
-.icon-cube:before { content: '\f1b2'; } /* '' */
-.icon-cubes:before { content: '\f1b3'; } /* '' */
+.icon-star:before {
+  content: '\e800';
+}
+
+/* '' */
+.icon-star-empty:before {
+  content: '\e801';
+}
+
+/* '' */
+.icon-thumbs-up:before {
+  content: '\e802';
+}
+
+/* '' */
+.icon-thumbs-down:before {
+  content: '\e803';
+}
+
+/* '' */
+.icon-target:before {
+  content: '\e804';
+}
+
+/* '' */
+.icon-target-1:before {
+  content: '\e805';
+}
+
+/* '' */
+.icon-target-2:before {
+  content: '\e806';
+}
+
+/* '' */
+.icon-tag:before {
+  content: '\e807';
+}
+
+/* '' */
+.icon-tags:before {
+  content: '\e808';
+}
+
+/* '' */
+.icon-flag:before {
+  content: '\e809';
+}
+
+/* '' */
+.icon-users:before {
+  content: '\e80a';
+}
+
+/* '' */
+.icon-help-circled:before {
+  content: '\e80b';
+}
+
+/* '' */
+.icon-comment:before {
+  content: '\e80c';
+}
+
+/* '' */
+.icon-book:before {
+  content: '\e80d';
+}
+
+/* '' */
+.icon-magnet:before {
+  content: '\e80e';
+}
+
+/* '' */
+.icon-credit-card:before {
+  content: '\e80f';
+}
+
+/* '' */
+.icon-wrench:before {
+  content: '\e810';
+}
+
+/* '' */
+.icon-cog-alt:before {
+  content: '\e811';
+}
+
+/* '' */
+.icon-cog:before {
+  content: '\e812';
+}
+
+/* '' */
+.icon-search:before {
+  content: '\e813';
+}
+
+/* '' */
+.icon-truck:before {
+  content: '\e814';
+}
+
+/* '' */
+.icon-mail:before {
+  content: '\e815';
+}
+
+/* '' */
+.icon-ok:before {
+  content: '\e816';
+}
+
+/* '' */
+.icon-thumbs-up-1:before {
+  content: '\e817';
+}
+
+/* '' */
+.icon-thumbs-down-1:before {
+  content: '\e818';
+}
+
+/* '' */
+.icon-phone:before {
+  content: '\e819';
+}
+
+/* '' */
+.icon-magnet-1:before {
+  content: '\e81a';
+}
+
+/* '' */
+.icon-credit-card-1:before {
+  content: '\e81b';
+}
+
+/* '' */
+.icon-wrench-1:before {
+  content: '\e81c';
+}
+
+/* '' */
+.icon-cog-alt-1:before {
+  content: '\e81d';
+}
+
+/* '' */
+.icon-cog-1:before {
+  content: '\e81e';
+}
+
+/* '' */
+.icon-angle-left-1:before {
+  content: '\e81f';
+}
+
+/* '' */
+.icon-angle-right-1:before {
+  content: '\e820';
+}
+
+/* '' */
+.icon-angle-up-1:before {
+  content: '\e821';
+}
+
+/* '' */
+.icon-angle-down-1:before {
+  content: '\e822';
+}
+
+/* '' */
+.icon-rss:before {
+  content: '\f09e';
+}
+
+/* '' */
+.icon-certificate:before {
+  content: '\f0a3';
+}
+
+/* '' */
+.icon-beaker:before {
+  content: '\f0c3';
+}
+
+/* '' */
+.icon-docs:before {
+  content: '\f0c5';
+}
+
+/* '' */
+.icon-mail-alt:before {
+  content: '\f0e0';
+}
+
+/* '' */
+.icon-comment-empty:before {
+  content: '\f0e5';
+}
+
+/* '' */
+.icon-doc-text:before {
+  content: '\f0f6';
+}
+
+/* '' */
+.icon-angle-left:before {
+  content: '\f104';
+}
+
+/* '' */
+.icon-angle-right:before {
+  content: '\f105';
+}
+
+/* '' */
+.icon-angle-up:before {
+  content: '\f106';
+}
+
+/* '' */
+.icon-angle-down:before {
+  content: '\f107';
+}
+
+/* '' */
+.icon-flag-checkered:before {
+  content: '\f11e';
+}
+
+/* '' */
+.icon-help:before {
+  content: '\f128';
+}
+
+/* '' */
+.icon-rss-squared:before {
+  content: '\f143';
+}
+
+/* '' */
+.icon-doc-text-inv:before {
+  content: '\f15c';
+}
+
+/* '' */
+.icon-down:before {
+  content: '\f175';
+}
+
+/* '' */
+.icon-up:before {
+  content: '\f176';
+}
+
+/* '' */
+.icon-left:before {
+  content: '\f177';
+}
+
+/* '' */
+.icon-right:before {
+  content: '\f178';
+}
+
+/* '' */
+.icon-cube:before {
+  content: '\f1b2';
+}
+
+/* '' */
+.icon-cubes:before {
+  content: '\f1b3';
+}
+
+/* '' */
