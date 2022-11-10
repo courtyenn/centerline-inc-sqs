@@ -1,6 +1,6 @@
 <div class="form-wrapper">
   <div class="form-inner-wrapper">
-    <form id="centerline-form" autocomplete="on" novalidate="">
+    <form id="centerline-form" autocomplete="on">
       <div class="field-list clear">
         <div class="form-item field text required">
           <label class="title" for="name">
@@ -28,10 +28,10 @@
         </div>
 
         <div class="form-item field">
-          <label class="title" for="phone">Phone</label>
+          <label class="title" for="phone">Phone<span class="required" aria-hidden="true">*</span></label>
           <div class="field text">
             <label class="caption">
-              <input id="phone" class="field-element phone" type="tel" type="phone" name="phone" pattern="[0-9]{10}"/>
+              <input id="phone" class="field-element phone" type="tel" type="phone" name="phone"/>
             </label>
           </div>
         </div>
@@ -46,7 +46,7 @@
             <optgroup label="Services">
               <option value="grinding">Custom Grinding</option>
               <option value="repair">Repair Spindle</option>
-              <option value="taper">Tapered Grinding (LOCAL ONLY)</option>
+              <option value="taper">Taper Grinding (LOCAL ONLY)</option>
             </optgroup>
             <optgroup label="Buy New Spindle">
               <option value="Alfred Jaeger">Alfred Jaeger</option>
@@ -106,7 +106,6 @@
       <div class="hidden form-submission-text">
         <p class="" style="white-space: pre-wrap">Thank you!</p>
       </div>
-      <div class="hidden form-submission-html" data-submission-html=""></div>
     </form>
     <script>
       const telInput = document.querySelector("#phone");
@@ -156,15 +155,15 @@
           contentSpan.append(newContent);
 
           const thumbnail = document.createElement("div");
-          const classList = 'thumbnail';
+          const classList = ['thumbnail'];
           if(file.type.includes('pdf')){
-            classList += ' pdf';
+            classList.push('pdf');
             newFile.src = 'https://centerline-inc.s3.us-west-1.amazonaws.com/dist/static/pdf-icon.png';
           } else {
             const src = URL.createObjectURL(file);
             newFile.src = src;
           }
-          thumbnail.classList = classList;
+          thumbnail.classList.add(...classList);
 
           thumbnail.append(contentSpan);
           thumbnail.append(newFile);
@@ -250,11 +249,15 @@
             return;
           }
 
+          let byteSize = 0;
           if (droppedFiles) {
-            if(droppedFiles)
             $.each(droppedFiles, function (i, file) {
+              byteSize += file.size;
               formData.set($input.attr("name"), file);
             });
+          }
+          if((byteSize / 1000000) >= 10){
+            console.log('ERROR! FILES TOO BIG');
           }
 
           console.log("Sending: ", formData.get('files[]'));
@@ -284,5 +287,3 @@
     </script>
   </div>
 </div>
-
-<script src=""></script>

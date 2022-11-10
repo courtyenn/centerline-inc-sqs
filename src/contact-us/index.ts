@@ -45,15 +45,15 @@ function formatIntlTelInput() {
     contentSpan.append(newContent);
 
     const thumbnail = document.createElement("div");
-    let classList = "thumbnail";
+    const classList = ["thumbnail"];
     if (file.type.includes("pdf")) {
-      classList += " pdf";
+      classList.push("pdf");
       newFile.src = "https://centerline-inc.s3.us-west-1.amazonaws.com/dist/static/pdf-icon.png";
     } else {
       const src = URL.createObjectURL(file);
       newFile.src = src;
     }
-    thumbnail.classList = classList;
+    thumbnail.classList.add();
 
     thumbnail.append(contentSpan);
     thumbnail.append(newFile);
