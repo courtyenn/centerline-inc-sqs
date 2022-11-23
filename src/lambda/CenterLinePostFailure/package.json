@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@hexagon/base64": "^1.0.18",
+    "lambda-multipart-parser": "^1.0.1",
+    "mimemessage": "^1.0.5"
+  }
+}
