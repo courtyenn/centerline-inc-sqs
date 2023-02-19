@@ -8,5 +8,5 @@ document.addEventListener("adobe_dc_view_sdk.ready", function()
     {
       content: {location: {url: "https://centerline-inc.s3.us-west-1.amazonaws.com/spindle_repair_information.pdf"}},
       metaData: {fileName: "SpindleRepairIntakeForm.pdf"}
-    }, {embedMode: "IN_LINE"});
+    });
 });
