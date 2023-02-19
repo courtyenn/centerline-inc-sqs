@@ -1,0 +1,15 @@
+<script src="https://documentservices.adobe.com/view-sdk/viewer.js"></script>
+<script>
+document.addEventListener("adobe_dc_view_sdk.ready", function()
+    {
+        var adobeDCView = new AdobeDC.View({clientId: "1900c81d5da546a999b6a4aa772049fd", divId: "adobe-dc-view"});
+        adobeDCView.previewFile(
+       {
+          content:   {location: {url: "https://centerline-inc.s3.us-west-1.amazonaws.com/spindle_repair_information.pdf"}},
+          metaData: {fileName: "SpindleRepairIntakeForm.pdf"}
+       });
+    });
+</script>
+/**
+https://developer.adobe.com/console/projects/829732/4566206088344918757/apis/ViewSDK/details
+**/
