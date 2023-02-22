@@ -95,16 +95,21 @@ ul {
     background: #ccccccad;
   }
 
-  section[data-section-id="636352c73033097a0ccd2604"] .section-background,
-  section[data-section-id="63635312076a893f26a8a8a7"] .section-background,
-  section[data-section-id="6191eb5820f31c383043f7de"] .section-background,
-  section[data-section-id="6192047bc4e7fe54ea2ef64f"] .section-background,
-  section[data-section-id="6361f929f557622e08bb70be"] .section-background,
-  section[data-section-id="63f63614d75b1ce57b6db45a"] .section-background {
-    background-image: 	url('https://centerline-inc.s3.us-west-1.amazonaws.com/dist/static/bo-play.png') !important;
-    background-color: #464646 !important;
-    background-attachment: fixed;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 52% 90%, 50% 100%, 48% 90%, 0% 90%);
+  section[data-section-id="636352c73033097a0ccd2604"],
+  section[data-section-id="63635312076a893f26a8a8a7"],
+  section[data-section-id="6191eb5820f31c383043f7de"],
+  section[data-section-id="6192047bc4e7fe54ea2ef64f"],
+  section[data-section-id="6361f929f557622e08bb70be"],
+  section[data-section-id="63f63614d75b1ce57b6db45a"] {
+    & .section-border {
+      background: transparent;
+    }
+    & .section-background {
+      background-image: 	url('https://centerline-inc.s3.us-west-1.amazonaws.com/dist/static/bo-play.png') !important;
+      background-color: #464646 !important;
+      background-attachment: fixed;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 52% 90%, 50% 100%, 48% 90%, 0% 90%);
+    }
   }
   section[data-section-id="6192047bc4e7fe54ea2ef64f"] {
     background-color: white !important;
